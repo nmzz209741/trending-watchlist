@@ -1,11 +1,11 @@
 import { Instagram, GitHub } from "@mui/icons-material";
 
 export const SOCIAL_MEDIA = [
-  { id: 1, name: "Github", url: "https://github.com", icon: <GitHub /> },
+  { id: 1, name: "GitHub", url: import.meta.env.VITE_GH_URL, icon: <GitHub /> },
   {
     id: 2,
     name: "Instagram",
-    url: "https://instagram.com",
+    url: import.meta.env.VITE_INSTA_URL,
     icon: <Instagram />,
   },
 ];
@@ -16,4 +16,7 @@ export const TM_CONFIG = {
   API_KEY: import.meta.env.VITE_TMDB_API_KEY,
 };
 
-export const MEDIA_TYPES = ["movie", "tv"];
+export const MEDIA_TYPES = {
+  MOVIES: "movie",
+  TV_SHOW: "tv",
+};

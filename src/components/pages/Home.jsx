@@ -1,21 +1,19 @@
 import { Box, Grid2 } from "@mui/material";
 import MediaList from "../views/MediaList"; // Ensure this path is correct
-import useFetchMovies from "../../hooks/useFetchMovies";
-import useFetchTVShows from "../../hooks/useFetchTVShows";
+import useFetchMediaContent from "../../hooks/useFetchMediaContent";
+import { MEDIA_TYPES } from "../../configs/constants";
 
 const Home = () => {
   const {
-    movies,
+    mediaContent: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetchMovies();
+  } = useFetchMediaContent(MEDIA_TYPES.MOVIES);
   const {
-    tvShows,
+    mediaContent: tvShows,
     loading: tvShowsLoading,
     error: tvShowsError,
-  } = useFetchTVShows();
-
-  console.log( "tvShows", tvShows );
+  } = useFetchMediaContent(MEDIA_TYPES.TV_SHOW);
 
   return (
     <Box component="main" sx={{ flex: 1, p: 2 }}>

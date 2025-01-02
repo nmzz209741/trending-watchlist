@@ -10,23 +10,13 @@ const api = axios.create({
   },
 });
 
-export const fetchTrendingMovies = async () => {
+export const fetchTrendingMedia = async (mediaType) => {
   try {
-    const response = await api.get("/trending/movie/day");
+    const response = await api.get(`/trending/${mediaType}/day`);
     return response.data.results;
   } catch (error) {
-    console.error("Error fetching trending movies:", error.message);
-    throw new Error("Failed to fetch trending movies.");
-  }
-};
-
-export const fetchTrendingTVShows = async () => {
-  try {
-    const response = await api.get("/trending/tv/day");
-    return response.data.results;
-  } catch (error) {
-    console.error("Error fetching trending TV Shows:", error.message);
-    throw new Error("Failed to fetch trending TV Shows.");
+    console.error(`Error fetching trending ${mediaType}s`, error.message);
+    throw new Error(`Failed to fetch trending ${mediaType}s`);
   }
 };
 
