@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+:root {
+    --bg-color: #272c34;
+    --font-color: #f5f5f5;
+
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+
+    color: var(--font-color);
+    background-color: var(--bg-color);
+}
+
