@@ -20,4 +20,18 @@ export const fetchTrendingMedia = async (mediaType) => {
   }
 };
 
+export const fetchGenres = async () => {
+  try {
+    const genres = [];
+    const response = await api.get("/genre/movie/list");
+    genres.push(...response.data.genres);
+    const tvGenres = await api.get("/genre/tv/list");
+    genres.push(...tvGenres.data.genres);
+    return genres;
+  } catch (error) {
+    console.error("Error fetching genres", error.message);
+    throw new Error("Failed to fetch genres");
+  }
+}
+
 export default api;

@@ -1,8 +1,25 @@
 import { Card, Box, Typography, Button } from "@mui/material";
 import { TM_CONFIG } from "../../configs/constants";
 import { YouTube } from "@mui/icons-material";
+import { useContext } from "react";
+import { GenreContext } from "../../contexts/GenreContext";
+import { mapGenreIdsToNames } from "../../utils/genreUtils";
 
 const MediaCard = ({ item }) => {
+  const {
+    title,
+    name,
+    vote_average,
+    release_date,
+    first_air_date,
+    genre_ids,
+    overview,
+    poster_path,
+    backdrop_path,
+  } = item;
+
+  const genres = useContext(GenreContext);
+  const mediaGenres = mapGenreIdsToNames(genre_ids, genres);
   return (
     <Card
       sx={{
@@ -31,10 +48,10 @@ const MediaCard = ({ item }) => {
           width: { xs: "100%", sm: "100%", md: "100%", lg: "50%" },
           height: "100%",
           backgroundImage: {
-            lg: `url(${TM_CONFIG.IMAGE_BASE_URL}/${item.poster_path})`,
-            md: `url(${TM_CONFIG.IMAGE_BASE_URL}/${item.backdrop_path})`,
-            xs: `url(${TM_CONFIG.IMAGE_BASE_URL}/${item.backdrop_path})`,
-            sm: `url(${TM_CONFIG.IMAGE_BASE_URL}/${item.backdrop_path})`,
+            lg: `url(${TM_CONFIG.IMAGE_BASE_URL}/${poster_path})`,
+            md: `url(${TM_CONFIG.IMAGE_BASE_URL}/${backdrop_path})`,
+            xs: `url(${TM_CONFIG.IMAGE_BASE_URL}/${backdrop_path})`,
+            sm: `url(${TM_CONFIG.IMAGE_BASE_URL}/${backdrop_path})`,
           },
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -86,7 +103,7 @@ const MediaCard = ({ item }) => {
               },
             }}
           >
-            {item.title || item.name}
+            {title || name}
           </Typography>
 
           {/* Rating */}
@@ -97,7 +114,7 @@ const MediaCard = ({ item }) => {
               mt: { xs: 0.5, sm: 1 },
             }}
           >
-            <Typography variant="h5">{item.vote_average}</Typography>
+            <Typography variant="h5">{vote_average}</Typography>
             <Typography
               component="span"
               sx={{
@@ -113,48 +130,49 @@ const MediaCard = ({ item }) => {
             </Typography>
           </Box>
 
-          {/* Release Date */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "baseline",
-              mt: 1,
-              mb: 1,
-              borderColor: "secondary.main",
-              border: 1,
-              p: { xs: 0.5, sm: 1 },
-              width: "fit-content",
-            }}
-          >
-            <Typography
-              variant="subtitle1"
+          <Box sx={{ display: "flex", alignItems: "baseline" }}>
+            {/* Release Date */}
+            <Box
               sx={{
-                opacity: 0.8,
+                display: "flex",
+                alignItems: "baseline",
+                mt: 1,
+                mb: 1,
+                borderColor: "secondary.main",
+                border: 1,
+                p: { xs: 0.5, sm: 1 },
+                width: "fit-content",
+              }}
+            >
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  opacity: 0.8,
+                  fontSize: {
+                    xs: "0.75rem",
+                    sm: "0.875rem",
+                    md: "1rem",
+                  },
+                }}
+              >
+                {release_date || first_air_date}
+              </Typography>
+            </Box>
+            {/* Genres */}
+            <Typography
+              variant="subtitle2"
+              sx={{
+                opacity: 0.5,
+                m: 1,
                 fontSize: {
                   xs: "0.75rem",
                   sm: "0.875rem",
-                  md: "1rem",
                 },
               }}
             >
-              {item.release_date || item.first_air_date}
+              {mediaGenres?.join(" • ")}
             </Typography>
           </Box>
-
-          {/* Genres */}
-          <Typography
-            variant="subtitle2"
-            sx={{
-              opacity: 0.7,
-              mt: 1,
-              fontSize: {
-                xs: "0.75rem",
-                sm: "0.875rem",
-              },
-            }}
-          >
-            {item.genres?.join(" • ")}
-          </Typography>
         </Box>
 
         {/* Overview */}
@@ -172,9 +190,10 @@ const MediaCard = ({ item }) => {
             WebkitLineClamp: 5,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
+            textTransform: "none",
           }}
         >
-          {item.overview}
+          {overview}
         </Typography>
 
         {/* Buttons */}
