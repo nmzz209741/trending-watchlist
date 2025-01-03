@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import notFound from "../../assets/images/404.png";
 
 const ErrorLayout = () => {
@@ -12,7 +12,7 @@ const ErrorLayout = () => {
       height="100vh"
       backgroundColor="secondary.main"
     >
-      <img src={notFound} alt="404" style={{ width: "50%",  }} />
+      <img src={notFound} alt="404" style={{ width: "50%" }} />
       <Button
         variant="contained"
         color="primary"
