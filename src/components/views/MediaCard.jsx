@@ -3,6 +3,7 @@ import { TM_CONFIG } from "../../configs/constants";
 import { YouTube } from "@mui/icons-material";
 import { useContext } from "react";
 import { GenreContext } from "../../contexts/GenreContext";
+import { getYoutubeTrailerUrl, getYTSUrl } from "../../utils/urlUtils";
 import { mapGenreIdsToNames } from "../../utils/genreUtils";
 
 const MediaCard = ({ item }) => {
@@ -20,6 +21,17 @@ const MediaCard = ({ item }) => {
 
   const genres = useContext(GenreContext);
   const mediaGenres = mapGenreIdsToNames(genre_ids, genres);
+
+  const linkToTrailer = () => {
+    const url = getYoutubeTrailerUrl(name || title);
+    window.open(url, "_blank");
+  };
+
+  const linkToYTS = () => {
+    const url = getYTSUrl(name || title);
+    window.open(url, "_blank");
+  };
+
   return (
     <Card
       sx={{
@@ -102,6 +114,7 @@ const MediaCard = ({ item }) => {
                 lg: "2rem",
               },
             }}
+            
           >
             {title || name}
           </Typography>
@@ -213,6 +226,7 @@ const MediaCard = ({ item }) => {
               fontSize: { xs: "0.875rem", sm: "1rem" },
               py: { xs: 1, sm: 1.5 },
             }}
+            onClick={linkToTrailer}
           >
             <YouTube sx={{ mr: 1 }} />
             Watch Trailer
@@ -225,6 +239,7 @@ const MediaCard = ({ item }) => {
               fontSize: { xs: "0.875rem", sm: "1rem" },
               py: { xs: 1, sm: 1.5 },
             }}
+            onClick={linkToYTS}
           >
             Search Torrent
           </Button>
