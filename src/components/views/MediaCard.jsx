@@ -104,7 +104,7 @@ const MediaCard = ({ item }) => {
       >
         <Box>
           <Typography
-            variant="h5"
+            variant="h6"
             fontWeight="bold"
             sx={{
               fontSize: {

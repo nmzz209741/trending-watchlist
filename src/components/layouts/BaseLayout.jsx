@@ -17,7 +17,7 @@ const BaseLayout = () => {
     >
       <CssBaseline />
       <Navbar />
-      <Box component="main" sx={{ flex: "1 0 auto", width: "100%"}}>
+      <Box component="main" sx={{ flex: "1 0 auto", width: "100%", height: "100%" }}>
         <Outlet />
       </Box>
       <Footer />

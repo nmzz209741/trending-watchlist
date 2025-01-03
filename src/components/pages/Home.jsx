@@ -27,23 +27,25 @@ const Home = () => {
 
   return (
     <GenreContext.Provider value={genres}>
-      <Box component="main" sx={{ flex: 1, p: 2 }}>
-        <Grid2 container>
-          {genresLoading && <LoadingSpinner />}
-          {genresError && <ErrorLoading />}
-          <MediaList
-            title="movies"
-            loading={moviesLoading}
-            error={moviesError}
-            content={movies}
-          />
-          <MediaList
-            title="TV shows"
-            loading={tvShowsLoading}
-            error={tvShowsError}
-            content={tvShows}
-          />
-        </Grid2>
+      <Box sx={{ flex: 1, p: 2 }}>
+        {genresLoading && <LoadingSpinner />}
+        {genresError && <ErrorLoading />}
+        {!genresError && !genresLoading && (
+          <Grid2 container>
+            <MediaList
+              title="movies"
+              loading={moviesLoading}
+              error={moviesError}
+              content={movies}
+            />
+            <MediaList
+              title="TV shows"
+              loading={tvShowsLoading}
+              error={tvShowsError}
+              content={tvShows}
+            />
+          </Grid2>
+        )}
       </Box>
     </GenreContext.Provider>
   );
