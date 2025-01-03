@@ -1,6 +1,6 @@
-import { Card, Box, Typography, Button } from "@mui/material";
+import { Card, Box, Typography, Button, Stack } from "@mui/material";
 import { TM_CONFIG } from "../../configs/constants";
-import { YouTube } from "@mui/icons-material";
+import { YouTube, Search } from "@mui/icons-material";
 import { useContext } from "react";
 import { GenreContext } from "../../contexts/GenreContext";
 import { getYoutubeTrailerUrl, getYTSUrl } from "../../utils/urlUtils";
@@ -114,7 +114,6 @@ const MediaCard = ({ item }) => {
                 lg: "2rem",
               },
             }}
-            
           >
             {title || name}
           </Typography>
@@ -218,31 +217,51 @@ const MediaCard = ({ item }) => {
             flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Button
-            variant="contained"
-            color="error"
-            fullWidth={false}
-            sx={{
-              fontSize: { xs: "0.875rem", sm: "1rem" },
-              py: { xs: 1, sm: 1.5 },
-            }}
-            onClick={linkToTrailer}
-          >
-            <YouTube sx={{ mr: 1 }} />
-            Watch Trailer
-          </Button>
-          <Button
-            variant="outlined"
-            color="success"
-            fullWidth={false}
-            sx={{
-              fontSize: { xs: "0.875rem", sm: "1rem" },
-              py: { xs: 1, sm: 1.5 },
-            }}
-            onClick={linkToYTS}
-          >
-            Search Torrent
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <Button
+              size="small"
+              variant="contained"
+              fullWidth={false}
+              sx={{
+                fontSize: {
+                  xs: "0.875rem",
+                  sm: "1rem",
+                  lg: "1rem",
+                  md: "1rem",
+                },
+                py: { xs: 1, sm: 1.5 },
+                backgroundColor: "#FF0000",
+                "&:hover": {
+                  backgroundColor: "#f50057",
+                },
+              }}
+              onClick={linkToTrailer}
+              startIcon={<YouTube />}
+            >
+              Watch Trailer
+            </Button>
+          </Stack>
+          <Stack direction="row" spacing={2}>
+            <Button
+              size="small"
+              variant="outlined"
+              color="success"
+              fullWidth={false}
+              sx={{
+                fontSize: {
+                  xs: "0.875rem",
+                  sm: "1rem",
+                  lg: "1rem",
+                  md: "1rem",
+                },
+                py: { xs: 1, sm: 1.5 },
+              }}
+              onClick={linkToYTS}
+              startIcon={<Search />}
+            >
+              Search Torrent
+            </Button>
+          </Stack>
         </Box>
       </Box>
     </Card>
