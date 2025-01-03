@@ -12,7 +12,7 @@ export const SOCIAL_MEDIA = [
 
 export const TM_CONFIG = {
   API_BASE_URL: "https://api.themoviedb.org/3",
-  IMAGE_BASE_URL: "https://image.tmdb.org/t/p/w500",
+  IMAGE_BASE_URL: "https://image.tmdb.org/t/p/w780",
   API_KEY: import.meta.env.VITE_TMDB_API_KEY,
 };
 
