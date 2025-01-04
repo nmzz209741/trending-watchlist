@@ -32,6 +32,16 @@ export const fetchGenres = async () => {
     console.error("Error fetching genres", error.message);
     throw new Error("Failed to fetch genres");
   }
-}
+};
+
+export const fetchExternalIds = async (id, mediaType) => {
+  try {
+    const response = await api.get(`/${mediaType}/${id}/external_ids`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching external ids for ${id}`, error.message);
+    throw new Error(`Failed to fetch external ids for ${id}`);
+  }
+};
 
 export default api;

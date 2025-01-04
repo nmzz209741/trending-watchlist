@@ -33,13 +33,13 @@ const Home = () => {
         {!genresError && !genresLoading && (
           <Grid2 container>
             <MediaList
-              title="movies"
+              type={MEDIA_TYPES.MOVIES}
               loading={moviesLoading}
               error={moviesError}
               content={movies}
             />
             <MediaList
-              title="TV shows"
+              type={MEDIA_TYPES.TV_SHOW}
               loading={tvShowsLoading}
               error={tvShowsError}
               content={tvShows}

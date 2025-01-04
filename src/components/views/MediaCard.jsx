@@ -5,9 +5,11 @@ import { useContext } from "react";
 import { GenreContext } from "../../contexts/GenreContext";
 import { getYoutubeTrailerUrl, getYTSUrl } from "../../utils/urlUtils";
 import { mapGenreIdsToNames } from "../../utils/genreUtils";
+import useFetchMovieURL from "../../hooks/useFetchMovieURL";
 
-const MediaCard = ({ item }) => {
+const MediaCard = ({ item, type }) => {
   const {
+    id,
     title,
     name,
     vote_average,
@@ -22,6 +24,8 @@ const MediaCard = ({ item }) => {
   const genres = useContext(GenreContext);
   const mediaGenres = mapGenreIdsToNames(genre_ids, genres);
 
+  const { url: imdbURL } = useFetchMovieURL(id, type);
+
   const linkToTrailer = () => {
     const url = getYoutubeTrailerUrl(name || title);
     window.open(url, "_blank");
@@ -30,6 +34,10 @@ const MediaCard = ({ item }) => {
   const linkToYTS = () => {
     const url = getYTSUrl(name || title);
     window.open(url, "_blank");
+  };
+
+  const linkToIMDB = () => {
+    window.open(imdbURL, "_blank");
   };
 
   return (
@@ -103,20 +111,32 @@ const MediaCard = ({ item }) => {
         }}
       >
         <Box>
-          <Typography
-            variant="h6"
-            fontWeight="bold"
+          <Button
+            variant="text"
+            color="secondary"
+            disableRipple
             sx={{
-              fontSize: {
-                xs: "1.25rem",
-                sm: "1.5rem",
-                md: "1.75rem",
-                lg: "2rem",
-              },
+              p: 0,
+              "&:hover": { color: "#f50057", backgroundColor: "transparent" },
             }}
+            onClick={linkToIMDB}
           >
-            {title || name}
-          </Typography>
+            <Typography
+              variant="subtitle1"
+              fontWeight="bold"
+              sx={{
+                fontSize: {
+                  xs: "1.25rem",
+                  sm: "1.5rem",
+                  md: "1.75rem",
+                  lg: "2rem",
+                },
+                textTransform: "capitalize",
+              }}
+            >
+              {title || name}
+            </Typography>
+          </Button>
 
           {/* Rating */}
           <Box
