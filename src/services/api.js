@@ -5,8 +5,8 @@ const { API_BASE_URL, API_KEY } = TM_CONFIG;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  params: {
-    api_key: API_KEY,
+  headers: {
+    Authorization: `Bearer ${API_KEY}`,
   },
 });
 
