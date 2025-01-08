@@ -22,7 +22,7 @@ const useFetchMovieURL = (id, mediaType) => {
       }
     };
     fetchUrl();
-  }, []);
+  }, [id, mediaType]);
 
   return { url, loading, error };
 };
