@@ -30,6 +30,9 @@ Make sure you have the following installed on your machine:
 ### Running the Application
 
 To start the development server, run:
+
+First create a `.env` file in the root directory and populate the values (refer .env.example)
+
 ```bash
 npm run dev
 ```
