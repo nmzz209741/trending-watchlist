@@ -53,6 +53,7 @@ export const mediaCardContentStyles = {
     p: 0,
     m: 0,
     "&:hover": { color: "#f50057", backgroundColor: "transparent" },
+    minWidth: "fit-content",
   },
   titleText: {
     fontSize: {
@@ -61,7 +62,7 @@ export const mediaCardContentStyles = {
       md: "1.5rem",
       lg: "1.5rem",
     },
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   ratingContainer: {
     display: "flex",
@@ -81,7 +82,7 @@ export const mediaCardContentStyles = {
     alignItems: "baseline",
     mt: 1,
     mb: 1,
-    borderColor: "secondary.main",
+    borderColor: "rgba(245, 245, 245, 0.5)",
     border: 0.5,
     p: { xs: 0.5, sm: 1 },
     width: "fit-content",
